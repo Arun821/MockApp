@@ -1,0 +1,41 @@
+.body{
+      padding: 10px;
+}
+.example-form {
+      min-width: 150px;
+      max-width: 500px;
+      width: 100%;
+}
+    
+.example-full-width {
+      width: 100%;
+}
+.mat-radio-button ~ .mat-radio-button {
+      margin-left: 16px;
+}
+mat-card{
+    width: 400px; 
+    background: linear-gradient( rgba(88, 85, 85, 0.678), rgba(225, 225, 226, 0.692)); 
+}
+table {
+      width: 100%;
+}
+form .bt-1,.bt-2 {
+      margin: 0 0 0 40px;
+}
+input{
+      background-color: transparent;
+}
+.bt-1{
+      color: white;
+      font-weight: bold;
+      background-color: rgb(6, 214, 6);
+}
+@media(width:750px){
+      table{
+            width: 100%;
+      }
+      mat-card{
+            width: 100%;
+      }
+}

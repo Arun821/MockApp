@@ -1,0 +1,102 @@
+<div class="body">
+      <mat-card>
+            <form class="example-form">
+                  <mat-form-field class="example-full-width">
+                        <mat-label>User Name</mat-label>
+                        <input type="text" matInput [formControl]="nameFormControl" placeholder="Arun" [(ngModel)]="user.userName">
+                        <mat-error *ngIf="nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
+                          Please enter a valid name
+                        </mat-error>
+                        <mat-error *ngIf="nameFormControl.hasError('required')">
+                          Name is <strong>required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com" [(ngModel)]="user.email">
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                      Email is <strong>required</strong>
+                    </mat-error> 
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                        <mat-label>Phone</mat-label>
+                        <input type="text" matInput [formControl]="phoneFormControl" placeholder="00000000000" [(ngModel)]="user.phone">
+                        <mat-error *ngIf="phoneFormControl.hasError('pattern') && !phoneFormControl.hasError('required')">
+                          Please enter a valid phone number(10 digits)
+                        </mat-error>
+                        <mat-error *ngIf="phoneFormControl.hasError('required')">
+                          Phone nuber is <strong>required</strong>
+                        </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                        <mat-label>Gender</mat-label>
+                        <input type="text" matInput [formControl]="genderFormControl" placeholder="M/F" [(ngModel)]="user.gender">
+                        <mat-error *ngIf="genderFormControl.hasError('pattern') && !genderFormControl.hasError('required')">
+                          Please enter a valid gender
+                        </mat-error>
+                        <mat-error *ngIf="genderFormControl.hasError('required')">
+                          Gender is <strong>required</strong>
+                        </mat-error>
+                  </mat-form-field>
+                      
+                  <mat-form-field class="example-full-width">
+                        <mat-label>Age</mat-label>
+                        <input type="number" matInput [formControl]="ageFormControl" placeholder="00" [(ngModel)]="user.age">
+                        <mat-error *ngIf="ageFormControl.hasError('pattern') && !ageFormControl.hasError('required')">
+                          Please enter a valid age
+                        </mat-error>
+                        <mat-error *ngIf="ageFormControl.hasError('required')">
+                          Age is <strong>required</strong>
+                        </mat-error>
+                  </mat-form-field>
+                      <button class="bt-1" mat-raised-button color="sucssus" (click)="addUser()" [disabled]="!user.userName || !user.email || !user.phone || !user.gender || !user.age">Submit</button>
+                      <button class="bt-2" mat-raised-button type="reset">Cancel</button>
+            </form>
+      </mat-card>
+      <hr>
+      
+      <table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="userName">
+          <th mat-header-cell *matHeaderCellDef> User Name </th>
+          <td mat-cell *matCellDef="let element" (click)="openDialog(element.id)" style="cursor: pointer;"> 
+            {{element.userName}}
+          </td>
+          
+        </ng-container>
+      
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef> Gender </th>
+          <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef> Age </th>
+          <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">  
+            <button mat-raised-button color="warn" (click)="delete(element.id)">Delete</button>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      </div>
